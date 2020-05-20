@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'online_shop.shop.apps.ShopConfig',
+    'online_shop.cart.apps.CartConfig',
 
     'debug_toolbar',
 ]
@@ -134,3 +135,5 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+CART_SESSION_ID = 'cart'
