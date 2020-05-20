@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'online_shop.shop.apps.ShopConfig',
     'online_shop.cart.apps.CartConfig',
+    'online_shop.orders.apps.OrdersConfig',
 
     'debug_toolbar',
 ]
