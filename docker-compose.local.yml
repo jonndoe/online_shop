@@ -1,12 +1,84 @@
 # this file is used to build containers locally on develop host.
+# containers:  django + celery_worker + rabbitmq + postgresql + nginx + traefik
 
 version: '2'
 
 services:
-  rabbitmq:
+  db:
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: changeme
+    #restart: always
+    image: postgres:9.6
+    expose:
+      - "5432"
+
+  broker:
     image: rabbitmq:latest
-    #command:
-      #- rabbitmq-server
     ports:
       - "5672:5672"
 
+  app:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@db/app_db
+    build:
+      context: .
+      dockerfile: dockerfiles/docker_app.conf
+    image: app-image
+    volumes:
+      - ./:/code/ # only for development
+      - static-root:/code/online_shop/collect_static
+      - media-root:/code/online_shop/media
+    links:
+      - db:db
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+
+  nginx:
+    volumes:
+      - media-root:/code/online_shop/media
+      - static-root:/code/online_shop/static
+    build:
+     context: .
+     dockerfile: dockerfiles/docker_nginx.conf
+    depends_on:
+     - app
+    labels:
+      #  Set your www.hostname.com as Host in production.
+      #- "traefik.http.routers.my-app.rule=Host(`whoami.docker.localhost`)"
+      #- "traefik.http.routers.nginx.rule=Host(`127.0.0.1`, `localhost`)"
+      - "traefik.http.routers.nginx.rule=Host(`127.0.0.1`)"
+
+  traefik:
+    image: "traefik:v2.0.1"
+    command:
+      - --entrypoints.web.address=:80
+      - --providers.docker
+      - --api.insecure
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  celery_worker:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@db/app_db
+    command: /venv/bin/celery -A online_shop worker -l info
+    container_name: celery_worker
+    depends_on:
+      - app
+      - db
+      - broker
+    hostname: celery_worker
+    image: app-image
+    #restart: on-failure
+
+volumes:
+  media-root:
+  static-root:

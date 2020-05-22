@@ -19,21 +19,19 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('orders/', include('online_shop.orders.urls', namespace='online_shop.orders')),
-    path('cart/', include('online_shop.cart.urls', namespace='online_shop.cart')),
-    path('', include('online_shop.shop.urls', namespace='online_shop.shop')),
+    path("admin/", admin.site.urls),
+    path("orders/", include("online_shop.orders.urls", namespace="online_shop.orders")),
+    path("cart/", include("online_shop.cart.urls", namespace="online_shop.cart")),
+    path("", include("online_shop.shop.urls", namespace="online_shop.shop")),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
 
+    urlpatterns = [
+        path("__debug__/", include(debug_toolbar.urls)),
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
-
     ] + urlpatterns
 
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
