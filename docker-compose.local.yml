@@ -1,5 +1,5 @@
 # this file is used to build containers locally on develop host.
-# containers:  django + celery_worker + rabbitmq + postgresql + nginx + traefik
+# containers:  django + celery_worker + celery_flower + rabbitmq + postgresql + nginx + traefik
 
 version: '2'
 
@@ -77,6 +77,23 @@ services:
       - broker
     hostname: celery_worker
     image: app-image
+    #restart: on-failure
+
+  dashboard:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@db/app_db
+    command: /venv/bin/celery -A online_shop flower
+    container_name: dashboard
+    depends_on:
+      - app
+      - db
+      - broker
+      - celery_worker
+    hostname: dashboard
+    image: app-image
+    ports:
+      - "5555:5555"
     #restart: on-failure
 
 volumes:
