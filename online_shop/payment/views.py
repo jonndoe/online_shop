@@ -37,6 +37,8 @@ def payment_process(request):
 
 
 def payment_done(request):
-    return render(request, 'payment/done.html')
+    return render(request, "payment/done.html")
+
+
 def payment_canceled(request):
-    return render(request, 'payment/canceled.html')
+    return render(request, "payment/canceled.html")
