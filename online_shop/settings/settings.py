@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "online_shop.shop.apps.ShopConfig",
     "online_shop.cart.apps.CartConfig",
     "online_shop.orders.apps.OrdersConfig",
+    "online_shop.payment.apps.PaymentConfig",
     "debug_toolbar",
 ]
 
@@ -69,7 +70,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "online_shop.cart.context_processors.cart",
-                "online_shop.shop.context_processors.categories_all"
+                "online_shop.shop.context_processors.categories_all",
             ],
         },
     },
@@ -133,3 +134,17 @@ INTERNAL_IPS = [
 CART_SESSION_ID = "cart"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Braintree settings , To BE in .ENV file for production!!!!!!!!!
+BRAINTREE_MERCHANT_ID = "bn5ndqsv5m9kth3t"  # Merchant ID
+BRAINTREE_PUBLIC_KEY = "fg9tjqf9r3kd6xcr"  # Public Key
+BRAINTREE_PRIVATE_KEY = "fdccc37335e9242f972558908dba0af0"  # Private key
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY,
+)

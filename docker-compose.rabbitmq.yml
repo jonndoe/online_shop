@@ -1,0 +1,10 @@
+# this file is used to build containers locally on develop host.
+# containers:   rabbitmq
+
+version: '2'
+
+services:
+  broker:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672"

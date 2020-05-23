@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('payment/', include('online_shop.payment.urls', namespace='payment')),
     path("admin/", admin.site.urls),
     path("orders/", include("online_shop.orders.urls", namespace="online_shop.orders")),
     path("cart/", include("online_shop.cart.urls", namespace="online_shop.cart")),
