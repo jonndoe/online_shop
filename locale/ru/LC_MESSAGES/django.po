@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-27 01:51+0300\n"
+"PO-Revision-Date: 2020-05-26 22:53+0000\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.4\n"
+
+#: online_shop/cart/forms.py:8
+msgid "Quantity"
+msgstr "Количество"
+
+#: online_shop/coupons/forms.py:6
+msgid "Coupon"
+msgstr "Купон"
+
+#: online_shop/payment/urls.py:8
+msgid "process/"
+msgstr "обработка"
+
+#: online_shop/payment/urls.py:9
+msgid "done/"
+msgstr "выполнено"
+
+#: online_shop/payment/urls.py:10
+msgid "canceled/"
+msgstr "отменено"
+
+#: online_shop/settings/settings.py:123
+msgid "English"
+msgstr "Английский"
+
+#: online_shop/settings/settings.py:125
+msgid "Russian"
+msgstr "Русский"
+
+#: online_shop/templates/base.html:38
+msgid "Language"
+msgstr "Язык"
+
+#: online_shop/templates/base.html:62
+#, python-format
+msgid ""
+"\n"
+"              %(total_items)s item%(total_items_plural)s,\n"
+"              $%(total_price)s\n"
+"            "
+msgstr ""
+"\n"
+"%(total_items)s item%(total_items_plural)s,\n"
+"$%(total_price)s"
+
+#: online_shop/templates/base.html:72
+msgid "Your cart is empty."
+msgstr "Ваша корзина пуста"
+
+#: online_shop/templates/orders/order/create.html:5
+#: online_shop/templates/orders/order/create.html:9
+msgid "Checkout"
+msgstr "Оформить заказ"
+
+#: online_shop/templates/orders/order/create.html:11
+msgid "Your order"
+msgstr "Ваш заказ"
+
+#: online_shop/templates/orders/order/create.html:21
+#, python-format
+msgid ""
+"\n"
+"            \"%(code)s\" (%(discount)s%% off)\n"
+"          "
+msgstr ""
+"\n"
+"\"%(code)s\" (%(discount)s%% скидка)"
+
+#: online_shop/templates/orders/order/create.html:28
+msgid "Total"
+msgstr "Всего"
+
+#: online_shop/templates/orders/order/create.html:32
+msgid "Place order"
+msgstr "Создать заказ"
+
+#: online_shop/templates/shop/product/detail.html:18
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+#: online_shop/urls.py:26
+msgid "payment/"
+msgstr "платеж"
+
+#: online_shop/urls.py:27
+msgid "admin/"
+msgstr "админ"
+
+#: online_shop/urls.py:28
+msgid "orders/"
+msgstr "заказы"
+
+#: online_shop/urls.py:29
+msgid "cart/"
+msgstr "корзина"
+
+#: online_shop/urls.py:30
+#| msgid "Coupon"
+msgid "coupons/"
+msgstr "купоны"

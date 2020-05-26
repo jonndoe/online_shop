@@ -1,5 +1,5 @@
 
-
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,25 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="w3-container w3-display-container w3-padding-16">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <a href="/"><h3 class="w3-wide"><b>Whiteberry</b></h3></a>
+
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<div class="languages">
+  <p>{% trans "Language" %}:</p>
+  <ul class="languages">
+    {% for language in languages %}
+      <li>
+        <a href="/{{ language.code }}/"
+          {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
+          {{ language.name_local }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
   </div>
 
 
@@ -38,10 +57,19 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             <p class="w3-large">
               <i class="fa fa-shopping-cart w3-margin-right"></i>
             </p>
-          <a href="{% url "online_shop.cart:cart_detail" %}">{{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }} </a>
+          <a href="{% url "online_shop.cart:cart_detail" %}">
+
+            {% blocktrans with total_items_plural=total_items|pluralize total_price=cart.get_total_price %}
+              {{ total_items }} item{{ total_items_plural }},
+              ${{ total_price }}
+            {% endblocktrans %}
+
+
+            {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
+          </a>
           {% else %}
             <p>
-              <i class="fa fa-shopping-cart w3-margin-right w3-xlarge"></i> <span> empty</span>
+              <i class="fa fa-shopping-cart w3-margin-right w3-xlarge"></i> <span> {% trans "Your cart is empty." %}</span>
             </p>
         {% endif %}
       {% endwith %}
