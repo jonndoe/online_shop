@@ -15,7 +15,13 @@
       <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" style="width:100%;min-height:25vh">
     </div>
     <div class="w3-twothird w3-container">
-      <h2>{{ product.name }}</h2>
+      <h2>
+          {{ product.name }}
+
+                <p class="text-muted" style="font-size: 40px;">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
+
+
+      </h2>
       <h3 class="price">${{ product.price }}</h3>
       <span>
       <form action="{% url "online_shop.cart:cart_add" product.id %}" method="post">
