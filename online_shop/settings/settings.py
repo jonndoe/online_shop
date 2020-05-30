@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "online_shop.coupons.apps.CouponsConfig",
     "debug_toolbar",
     "rosetta",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,6 @@ Configuration.configure(
 REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

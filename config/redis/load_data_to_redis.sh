@@ -10,6 +10,6 @@ echo 'eval "$(conda shell.bash hook)"'
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate env38_online_shop
 pip list
-python manage.py shell < load_data_to_redis.py
+python manage.py shell < config/redis/load_data_to_redis.py
 
 echo "finishing task"

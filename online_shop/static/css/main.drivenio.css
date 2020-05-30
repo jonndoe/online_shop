@@ -10931,3 +10931,12 @@ body.page-purchase .course-card-attrs .course-card-updated {
 .logo {
  color:white;
 }
+
+#content div.mt-4 {
+ margin-top: 0px !important;
+}
+
+a.selected {
+ background-color: #0f6674;
+ color: white;
+}
