@@ -8,3 +8,8 @@ services:
     image: rabbitmq:latest
     ports:
       - "5672:5672"
+
+  redis:
+    image: redis:3.0
+    ports:
+      - "6379:6379"
