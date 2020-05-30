@@ -10940,3 +10940,7 @@ a.selected {
  background-color: #0f6674;
  color: white;
 }
+
+img.card-img-top {
+ height: auto;
+}

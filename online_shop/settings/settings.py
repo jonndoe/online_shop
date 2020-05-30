@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "rosetta",
     "crispy_forms",
+    'imagekit',
 ]
 
 MIDDLEWARE = [

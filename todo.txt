@@ -1,0 +1,17 @@
+# this is todo list
+
+- pagination for list.html
+
+- yandex payments
+
+- comments
+
+- starts status calculations
+
+- ru/eng finishing
+
+- run in docker containers
+
+- .env files set up
+
+- ci/cd
