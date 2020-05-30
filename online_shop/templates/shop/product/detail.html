@@ -7,17 +7,38 @@
 {% endblock %}
 
 {% block content %}
-  <div class="product-detail">
-    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-    <h1>{{ product.name }}</h1>
-    <h2><a href="{{ product.category.get_absolute_url }}">{{product.category }}</a></h2>
-    <p class="price">${{ product.price }}</p>
-    <form action="{% url "online_shop.cart:cart_add" product.id %}" method="post">
-        {{ cart_product_form }}
-        {% csrf_token %}
-        <input type="submit" value="{% trans "Add to cart" %}">
-    </form>
-    {{ product.description|linebreaks }}
+  <div class="product-detail w3-content">
+  <div class="w3-row w3-margin">
+
+
+    <div class="w3-third">
+      <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" style="width:100%;min-height:25vh">
+    </div>
+    <div class="w3-twothird w3-container">
+      <h2>{{ product.name }}</h2>
+      <h3 class="price">${{ product.price }}</h3>
+      <span>
+      <form action="{% url "online_shop.cart:cart_add" product.id %}" method="post">
+          {{ cart_product_form }}
+          {% csrf_token %}
+          <input type="submit" value="{% trans "Add to cart" %}">
+      </form>
+      </span>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        {{ product.description|linebreaks }}
+      </p>
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
 
     {% if recommended_products %}
        <div class="recommendations">
