@@ -9,8 +9,10 @@
         <div>
             {% if category %}
                 <h3>{{ category.name }}</h3>
+                {% include "pagination.html" with page=products %}
             {% else %}
                 <h3>Products</h3>
+                {% include "pagination.html" with page=products %}
                 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -74,7 +76,11 @@
         </div>
       </div>
     {% endfor %}
+
+    {% include "pagination.html" with page=products %}
   </div>
+
+
 
 {% endblock %}
 

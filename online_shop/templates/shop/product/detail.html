@@ -7,6 +7,12 @@
   {{ product.name }}
 {% endblock %}
 
+
+{% block categories %}
+
+{% endblock %}
+
+
 {% block content %}
         <div class="card mt-4">
           <img class="card-img-top img-fluid" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="">

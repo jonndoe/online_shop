@@ -3,7 +3,11 @@ from .models import Category, Product
 from online_shop.cart.forms import CartAddProductForm
 from .recommender import Recommender
 
+# paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+'''
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -14,8 +18,47 @@ def product_list(request, category_slug=None):
     return render(
         request,
         "shop/product/list.html",
-        {"category": category, "categories": categories, "products": products},
+        {"category": category,
+         "categories": categories,
+         "products": products},
     )
+'''
+
+def product_list(request, category_slug=None):
+
+    category = None
+    object_list = Product.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        object_list = object_list.filter(category=category)
+    paginator = Paginator(object_list, 3)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer deliver first page
+        products = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range deliver last page of results
+        products = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        "shop/product/list.html",
+        {"page":page,
+         "category": category,
+         "products": products},
+    )
+
+
+
+
+
+
+
+
+
+
 
 
 def product_detail(request, id, slug):
@@ -32,3 +75,5 @@ def product_detail(request, id, slug):
          "cart_product_form": cart_product_form,
          'recommended_products': recommended_products},
     )
+
+
