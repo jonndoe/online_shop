@@ -15,3 +15,5 @@
 - .env files set up
 
 - ci/cd
+
+- login/signup with django-allauth

@@ -10941,6 +10941,10 @@ a.selected {
  color: white;
 }
 
+a {
+    text-decoration: none
+}
+
 img.card-img-top {
  height: auto;
 }
